@@ -32,6 +32,8 @@ public class photo_manager : MonoBehaviour
 
     }
 
+    /**
+
     // Update is called once per frame
     void Update()
     {
@@ -50,6 +52,8 @@ public class photo_manager : MonoBehaviour
             StartCoroutine("ChangePic");
         }
     }
+
+    **/
 
     IEnumerator GetPhotoJson()
     {
