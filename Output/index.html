@@ -6,7 +6,7 @@
     <title>Unity WebGL Player | Gallery</title>
   </head>
   <body style="text-align: center">
-    <canvas id="unity-canvas" width=960 height=600 style="width: 960px; height: 600px; background: #1F1F20"></canvas>
+    <canvas id="unity-canvas" width=1920 height=1080 style="width: 1920px; height: 1080px; background: #808080"></canvas>
     <script src="Build/Output.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -18,9 +18,9 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/Output.data.br",
-        frameworkUrl: "Build/Output.framework.js.br",
-        codeUrl: "Build/Output.wasm.br",
+        dataUrl: "Build/Output.data",
+        frameworkUrl: "Build/Output.framework.js",
+        codeUrl: "Build/Output.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Gallery",
