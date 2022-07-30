@@ -16,7 +16,6 @@ public class ui_manager : MonoBehaviour
             Bank.started = true;
         }
 
-        /**
         //press anywhere to start functionality
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -31,6 +30,5 @@ public class ui_manager : MonoBehaviour
                 Bank.started = false;
             }
         }
-        **/
     }
 }
