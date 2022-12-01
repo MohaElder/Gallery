@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
-
+using System.Linq;
 
 public class photo_manager : MonoBehaviour
 {
     public Animator light_animator;
 
-    PhotoList photos;
+    Image[] photos;
     int idx = 0;
     Material mat;
     bool changed = false;
@@ -19,7 +19,16 @@ public class photo_manager : MonoBehaviour
     //for retreiving image array json
     class PhotoList
     {
-        public string[] images;
+        public string[] tags;
+        public Dictionary<string, Image> images;
+    }
+
+    class Image
+    {
+        public string url;
+        public string DateTime;
+        public string Camera;
+        public string[] Tags;
     }
 
 
@@ -58,15 +67,17 @@ public class photo_manager : MonoBehaviour
         UnityWebRequest req = UnityWebRequest.Get("https://raw.githubusercontent.com/MohaElder/me/main/src/utils/imageLink.json");
         yield return req.SendWebRequest();
         var res = req.downloadHandler.text;
-        photos = JsonConvert.DeserializeObject<PhotoList>(res);
+        var ret = JsonConvert.DeserializeObject<PhotoList>(res);
+        photos = ret.images.Values.ToArray();
+        Debug.Log(photos[0]);
     }
 
     //code derived from Self-Reliance https://github.com/MohaElder/SelfReliance
     IEnumerator ChangePic()
     {
         changed = true;
-        idx = idx + 1 < photos.images.Length ? idx + 1 : 0;
-        UnityWebRequest req = new UnityWebRequest(photos.images[idx]);
+        idx = idx + 1 < photos.Length ? idx + 1 : 0;
+        UnityWebRequest req = new UnityWebRequest(photos[idx].url);
         DownloadHandlerTexture texD = new DownloadHandlerTexture(true);
         req.downloadHandler = texD;
         yield return req.SendWebRequest();
